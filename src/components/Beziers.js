@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import styled from 'styled-components';
+import { PortalButton, CurveWrapper, CurvePoint } from '../styles/styledComponents';
 
 // import { render } from '@testing-library/react'
 import ReactBezier from "react-bezier";
@@ -23,12 +25,15 @@ const settings = [
 class Beziers extends Component {
   render(){
     return(
-      <ReactBezier settings={settings}>
-      <div>
-        <div id="cube-1"></div>
-        <div id="cube-2"></div>
-      </div>
-      </ReactBezier>
+      <>
+        <ReactBezier settings={settings}>
+          <CurveWrapper>
+            <CurvePoint id="cube-1"></CurvePoint>
+            <CurvePoint id="cube-2"></CurvePoint>
+          </CurveWrapper>
+        </ReactBezier>
+        <PortalButton yes>Styled Component</PortalButton>
+      </>
     )
   }
 }
