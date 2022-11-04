@@ -1,14 +1,20 @@
 import Beziers from './components/Beziers';
 import BezierCurve from './components/BezierCurve';
+import ComeauBezier from './components/ComeauBezier';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
 
   const startPoint = [25, 25];
-  const controlPoint = [300, 175];
+  const controlPoint = [300, 275];
   const endPoint = [25, 325];
-  const path = (
+
+  const startPointA02 = [25, 325];
+  const controlPointA02 = [300, 575];
+  const endPointA02 = [25, 650];
+
+  const pathA01 = (
     <path
       d={`
         M ${startPoint}
@@ -19,6 +25,19 @@ function App() {
       strokeWidth={5}
     />
   );
+
+  const pathA02 = (
+    <path
+      d={`
+        M ${startPointA02}
+        Q ${controlPointA02} ${endPointA02}
+      `}
+      fill="none"
+      stroke="hotpink"
+      strokeWidth={5}
+    />
+  );
+
   const path02 = (
     <path
       d={`
@@ -27,46 +46,50 @@ function App() {
         C 25,125 300,150 25,175
       `}
       fill="none"
-      stroke="hotpink"
-      strokeWidth={5}
+      stroke="#ff37ea"
+      strokeWidth={15}
     />
   )
 
+
   return (
     <div className="App">
-      {/* <header className="App-header">
+      <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      </header>
+
+      <svg
+        viewBox="0 0 200 700"
+        style={{ maxHeight: 400 }}
+      >
+        {pathA01}
+        {pathA02}
+      </svg>
+
+      <div style={{
+          backgroundColor: 'pink',
+          padding: '10px',
+          height: '220px',
+          width: '220px'
+        }}>
+        <svg
+          viewBox="0 0 200 200"
+          style={{ maxHeight: 400 }}
         >
-          Learn React
-        </a>
-      </header> */}
+          {path02}
+        </svg>
+      </div>
+
+      {/* <Beziers />
+      <BezierCurve /> */}
+
+      <ComeauBezier viewBoxWidth={2500} viewBoxHeight={2500} />
 
 
 
-      <svg
-        viewBox="0 0 200 350"
-        style={{ maxHeight: 400 }}
-      >
-        {path}
-      </svg>
 
-      <svg
-        viewBox="0 0 200 200"
-        style={{ maxHeight: 400 }}
-      >
-        {path02}
-      </svg>
 
-      <Beziers />
-      <BezierCurve />
+
     </div>
   );
 }
