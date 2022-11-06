@@ -1,6 +1,7 @@
 import Beziers from './components/Beziers';
 import BezierCurve from './components/BezierCurve';
 import ComeauBezier from './components/ComeauBezier';
+import Bezier03 from './components/Bezier03';
 import logo from './logo.svg';
 import './App.css';
 
@@ -38,7 +39,7 @@ function App() {
     />
   );
 
-  const path02 = (
+  const pathCubic04 = (
     <path
       d={`
         M 25,25
@@ -54,9 +55,11 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      </header> */}
+
+      <Bezier03 />
 
       <svg
         viewBox="0 0 200 700"
@@ -76,18 +79,14 @@ function App() {
           viewBox="0 0 200 200"
           style={{ maxHeight: 400 }}
         >
-          {path02}
+          {pathCubic04}
         </svg>
       </div>
 
-      {/* <Beziers />
-      <BezierCurve /> */}
+      {/* <Beziers /> */}
+      {/* <BezierCurve /> */}
 
       <ComeauBezier viewBoxWidth={2500} viewBoxHeight={2500} />
-
-
-
-
 
 
     </div>

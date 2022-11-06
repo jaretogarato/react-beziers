@@ -51,7 +51,7 @@ class BezierCurve extends Component {
       console.log("The current mapPoint is: " + mapPoint )
       console.log("\n");
 
-      return point; //equivalent to list[index]
+      return mapPoint;
     })
 
     // for(var t=0; t<1; t+=0.01) {
@@ -62,9 +62,9 @@ class BezierCurve extends Component {
     return(
       <>
         <p>hello</p>
-        {/* <Bezier>
+        <Bezier>
 
-        </Bezier> */}
+        </Bezier>
         { this.bezierPoints() }
         <p>yo</p>
       </>
