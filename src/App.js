@@ -69,7 +69,7 @@ function App() {
         {pathA02}
       </svg>
 
-      <div style={{
+      {/* <div style={{
           backgroundColor: 'pink',
           padding: '10px',
           height: '220px',
@@ -81,10 +81,7 @@ function App() {
         >
           {pathCubic04}
         </svg>
-      </div>
-
-      {/* <Beziers /> */}
-      {/* <BezierCurve /> */}
+      </div> */}
 
       <ComeauBezier viewBoxWidth={2500} viewBoxHeight={2500} />
 
