@@ -2,6 +2,7 @@ import Beziers from './components/Beziers';
 import BezierCurve from './components/BezierCurve';
 import ComeauBezier from './components/ComeauBezier';
 import Bezier03 from './components/Bezier03';
+import Bezier04 from './components/Bezier04';
 import logo from './logo.svg';
 import './App.css';
 
@@ -60,6 +61,7 @@ function App() {
       </header> */}
 
       <Bezier03 />
+      <Bezier04 />
 
       <svg
         viewBox="0 0 200 700"
@@ -69,19 +71,6 @@ function App() {
         {pathA02}
       </svg>
 
-      {/* <div style={{
-          backgroundColor: 'pink',
-          padding: '10px',
-          height: '220px',
-          width: '220px'
-        }}>
-        <svg
-          viewBox="0 0 200 200"
-          style={{ maxHeight: 400 }}
-        >
-          {pathCubic04}
-        </svg>
-      </div> */}
 
       {/* <ComeauBezier viewBoxWidth={2500} viewBoxHeight={2500} /> */}
 

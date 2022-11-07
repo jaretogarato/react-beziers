@@ -5,7 +5,7 @@ class Bezier03 extends Component {
   bezierPoints = () => {
     let cubicPoints="";
     let cp1x, cp1y, cp2x, cp2y, ptx, pty, colWidth;
-    let points02, points03, points04, points05, points06, points07, points08, points09, points10, points11, points12, points13, points14, points15;
+    let points01, points02, points03, points04, points05, points06, points07, points08, points09, points10, points11, points12, points13, points14, points15, points16;
 
     const points = [
       [0,200],
@@ -62,7 +62,6 @@ class Bezier03 extends Component {
             style={styles.pathinator}
           />
         </svg>
-        {/* <p>{this.bezierPoints()}</p> */}
       </div>
     )
   };
