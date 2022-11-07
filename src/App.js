@@ -83,7 +83,7 @@ function App() {
         </svg>
       </div> */}
 
-      <ComeauBezier viewBoxWidth={2500} viewBoxHeight={2500} />
+      {/* <ComeauBezier viewBoxWidth={2500} viewBoxHeight={2500} /> */}
 
 
     </div>

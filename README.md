@@ -1,3 +1,18 @@
+desired cubic point structure:
+    vv first item in points array
+    M 0,400
+    vv CP for point 1, CP for point 2, Point 2
+    C 50,400 150,300 100,300
+    C 150,300 250,550 200,550
+    C             300,200
+    C             400,50
+    C             500,400
+    C             600,250
+    C             700,350
+    C             800,500
+    C             900,425
+    C             1000,525
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
