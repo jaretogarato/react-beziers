@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Bezier04 extends Component {
+class Bezier05 extends Component {
 
   refPoints = [
     [0,200],
@@ -171,6 +171,4 @@ class Bezier04 extends Component {
 //   },
 // }
 
-
-
-export default Bezier04
+export default Bezier05;

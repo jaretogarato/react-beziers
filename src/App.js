@@ -3,6 +3,7 @@ import BezierCurve from './components/BezierCurve';
 import ComeauBezier from './components/ComeauBezier';
 import Bezier03 from './components/Bezier03';
 import Bezier04 from './components/Bezier04';
+import Bezier05 from './components/Bezier05';
 import logo from './logo.svg';
 import './App.css';
 
@@ -60,8 +61,9 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header> */}
 
-      <Bezier03 />
+      {/* <Bezier03 /> */}
       <Bezier04 />
+      <Bezier05 />
 
       <svg
         viewBox="0 0 200 700"
