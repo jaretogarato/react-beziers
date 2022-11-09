@@ -90,7 +90,7 @@ class Bezier04 extends Component {
     let newY;
 
     if (i > 0) {
-      for (let j = 0; j < i; j++) {
+      for (let j = 0; j < 11; j++) {
         if (outputArray[j][1] > (spectrumHeight / 2)) {
           newY = outputArray[j][1] - ((spectrumHeight-outputArray[j][1]) / totalSlices);
           outputArray[j][1] = newY;
@@ -128,8 +128,8 @@ class Bezier04 extends Component {
           let spectrum = this.bezierPoints(this.refPoints);
 
           //                       totalSlices, i vv
-          let sliceInfo = this.makeTimeSlice(16, i);
-          console.log('sliceInfo: ', sliceInfo);
+          // let sliceInfo = this.makeTimeSlice(16, i);
+          // console.log('sliceInfo: ', sliceInfo);
 
           return (
             <div key={`key-${i}`}>
@@ -140,7 +140,6 @@ class Bezier04 extends Component {
                   d={
                     spectrum
                   }
-                  // totalSlices, sliceIndex, startHue, endHue vv
                   // TODO: "globalize" the number of slices, etc
                   style={ this.makeSpectraStyles(16, i, 200, 300) }
 
@@ -155,22 +154,5 @@ class Bezier04 extends Component {
     )
   };
 }
-
-// const baseStyles = {
-//   pathinator: {
-//     strokeWidth: '4',
-//     strokeOpacity: ".9",
-//     fill: "none",
-//     // stroke: "hsl(350, 76%, 72%)"
-//   }
-// }
-// const styles ={
-//   strokeColor: {
-//     ...baseStyles.pathinator,
-//     stroke: "hsl(350, 76%, 72%)",
-//   },
-// }
-
-
 
 export default Bezier04

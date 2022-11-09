@@ -1,159 +1,167 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
+import DrawSpectrum from './DrawSpectrum'
 class Bezier05 extends Component {
+	spectrumFirst = [200, 150, 275, 100, 25, 200, 125, 175, 250, 200, 250]
 
-  refPoints = [
-    [0,200],
-    [100,150],
-    [200,275],
-    [300,100],
-    [400,25],
-    [500,200],
-    [600,125],
-    [700,175],
-    [800,250],
-    [900,200],
-    [1000,250]
-  ];
+	spectrumLast = [100, 150, 25, 200, 275, 100, 175, 125, 50, 100, 50]
 
-  colors = [
-    250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325
-  ];
+	totalSpectra = 16
+	pointsPerSpectrum = 11
+	spectrumHeight = 300
+	spectrumWidth = 1000
+	hSpaceBetweenPoints = 100
+	// ^^ spectrumWidth / (pointsPerSpectrum - 1);
+	colWidth = 50
+	// ^^ half of hSpaceBetweenPoints
 
-  bezierPoints = (points) => {
-    let cubicPoints="";
-    let cp1x, cp1y, cp2x, cp2y, ptx, pty, colWidth;
+	colors = [
+		250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320,
+		325,
+	]
 
-    // console.log("points: ", points);
+	bezierPoints = (points) => {
+		let cubicPoints = ''
+		let cp1x, cp1y, cp2x, cp2y, ptx, pty, colWidth
 
-    colWidth = Math.round((points[0][0] + points[1][0]) / 2);
-    // console.log('colWidth: ', colWidth);
-    points.forEach((point, i) => {
-      // console.log('point: ', point);
-      if (i === 0) {
-        cubicPoints += "M " + point[0] + "," + point[1] + " ";
-      }
-      else {
-        cp1x = point[0] - colWidth;
-        cp1y = points[i-1][1];
-        cp2x = point[0] - colWidth;
-        cp2y = point[1];
-        ptx = point[0];
-        pty = point[1];
-        cubicPoints += "C " + cp1x + "," + cp1y + " " + cp2x + "," + cp2y + " " + ptx + "," + pty + " ";
-      }
-    });
-    // console.log("cubicPoints::: ",cubicPoints);
+		points.forEach((point, i) => {
+			// point is the y coord
+			if (i === 0) {
+				cubicPoints += 'M ' + i + ',' + point + ' '
+			} else {
+				cp1x = i * this.hSpaceBetweenPoints - this.colWidth
+				cp1y = points[i - 1]
+				cp2x = i * this.hSpaceBetweenPoints - this.colWidth
+				cp2y = point
+				ptx = i * this.hSpaceBetweenPoints
+				pty = point
+				cubicPoints +=
+					'C ' +
+					cp1x +
+					',' +
+					cp1y +
+					' ' +
+					cp2x +
+					',' +
+					cp2y +
+					' ' +
+					ptx +
+					',' +
+					pty +
+					' '
+			}
+		})
+		console.log('()() ', cubicPoints)
+		return cubicPoints
+	}
 
-    return(cubicPoints);
-  }
+	makeSpectraStyles(spectrumId, startHue, endHue) {
+		let range = Math.abs(startHue - endHue)
+		let sliceSize = range / this.totalSpectra
+		let currentHue = Math.round(spectrumId * sliceSize + startHue)
+		let outputCss = {
+			strokeWidth: '4',
+			strokeOpacity: '.9',
+			fill: 'none',
+			stroke: 'hsl(' + currentHue + ', 76%, 72%)',
+		}
+		return outputCss
+	}
 
-  makeSpectraStyles(totalSlices, sliceIndex, startHue, endHue) {
-    // console.log("totalSlices: ", totalSlices);
-    // console.log("sliceIndex: ", sliceIndex);
-    // console.log("startHue: ", startHue);
-    // console.log("endHue: ", endHue);
+	makeTimeSlice(spectrumId) {
+		// we are going through 16 spectra
+		let newYIncrement
+		let newY
+		let frequencyId
 
-    let range = Math.abs(startHue-endHue);
-    // console.log("range: ", range);
-    let sliceSize = range / totalSlices;
-    // console.log ('sliceSize: ', sliceSize);
-    let currentHue = Math.round((sliceIndex * sliceSize) + startHue);
-    // console.log('currentHue: ', currentHue);
-    let outputCss = {
-      strokeWidth: '4',
-      strokeOpacity: '.9',
-      fill: 'none',
-      stroke: 'hsl(' + currentHue + ', 76%, 72%)'
-    }
-    // console.log('outputCss: ', outputCss);
+		console.log('---spectrumId: ', spectrumId)
+		// make sure not to call this function on the first or last spectra
+		for (frequencyId = 0; frequencyId < this.pointsPerSpectrum; frequencyId++) {
+			// we are going through 11 frequencies per spectra
+			if (spectrumId === 0) {
+				// use spectrumFirst
+				this.spectrumWorking[frequencyId] = this.spectrumFirst[frequencyId]
+				// console.log('specId, freqId: ', spectrumId, " ", frequencyId);
+			} else if (spectrumId === this.totalSpectra - 1) {
+				// use spectrumLast
+				// console.log('last spectrum specId, freqId: ', spectrumId, " ", frequencyId);
+				this.spectrumWorking[frequencyId] = this.spectrumLast[frequencyId]
+			} else {
+				// main interpolations for all the other spectra
+				newYIncrement =
+					Math.abs(
+						this.spectrumFirst[frequencyId] - this.spectrumLast[frequencyId]
+					) / this.pointsPerSpectrum
+				console.log('main newYincrement: ', newYIncrement)
 
-    return outputCss;
-  }
+				if (this.spectrumFirst[frequencyId] > this.spectrumLast[frequencyId]) {
+					newY = Math.round(this.spectrumFirst[frequencyId] - newYIncrement)
+					console.log('first is greater')
+					this.spectrumWorking[frequencyId] = newY
+				} else if (
+					this.spectrumFirst[frequencyId] < this.spectrumLast[frequencyId]
+				) {
+					newY = Math.round(this.spectrumFirst[frequencyId] + newYIncrement)
+					console.log('last is greater')
+					this.spectrumWorking[frequencyId] = newY
+				} else {
+					// they are equal -- set to first
+					this.spectrumWorking[frequencyId] = this.spectrumFirst[frequencyId]
+					console.log('they are equal')
+				}
+				console.log('newY: ', newY)
+				// this.spectrumWorking[frequencyId] =
+			}
+		}
+		console.log('============')
+		console.log('spectrumId: ', spectrumId)
+		console.log('this.spectrumWorking: ')
+		console.log(this.spectrumWorking)
+		console.log('============')
+		console.log('\n')
+	}
 
-  makeTimeSlice(i, totalSlices) {
-    let spectrumHeight = 300;
-    const refPoints = [
-      [0,200],
-      [100,150],
-      [200,275],
-      [300,100],
-      [400,25],
-      [500,200],
-      [600,125],
-      [700,175],
-      [800,250],
-      [900,200],
-      [1000,250]
-    ];
-    let outputArray = refPoints;
-    let newY;
+	render() {
+		let spectrumWorking = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    if (i > 0) {
-      for (let j = 0; j < i; j++) {
-        if (outputArray[j][1] > (spectrumHeight / 2)) {
-          newY = outputArray[j][1] - ((spectrumHeight-outputArray[j][1]) / totalSlices);
-          outputArray[j][1] = newY;
-        } else if (outputArray[j][1] < (spectrumHeight / 2)) {
-          newY = outputArray[j][1] + ((spectrumHeight-outputArray[j][1]) / totalSlices);
-          outputArray[j][1] = newY;
-        }
-        return outputArray;
-        // ^^ if equal to spectrumHeight / 2, leave it alone
-      }
-    }
-    return outputArray;
+		console.log('spectrumWorking: ', spectrumWorking)
+		return (
+			<div
+				id='lakka'
+				style={{
+					backgroundColor: 'none',
+					// border: 'gray 10px solid',
+					padding: '10px',
+					height: '320px',
+					minHeight: '320px',
+					width: '1020px',
+				}}
+			>
+				{/* TODO: get rid of colors array and just iterate the number of timeSlices */}
+				{this.colors.map((point, spectrumId) => {
+					console.log('*-*spectrumId: ', spectrumId)
 
+					let repeatingSpectrum = this.bezierPoints(this.spectrumFirst)
 
-    // pointsAtLastIteration = [
-    //   [0, (300-refPoints[15][1])]
-    // ]
+					//                       this.totalSpectra, i vv
+					// let sliceInfo = this.makeTimeSlice(spectrumId)
 
-    // pointsAt
-  }
-
-  render(){
-    return(
-      <div id="chaka" style={{
-        backgroundColor: 'white',
-        // border: 'gray 10px solid',
-        padding: '10px',
-        height: '320px',
-        minHeight: '320px',
-        width: '1020px'
-      }}>
-
-       {/* TODO: get rid of colors array and just iterate the number of timeSlices */}
-       {this.colors.map((point, i) => {
-          let spectrum = this.bezierPoints(this.refPoints);
-
-          //                       totalSlices, i vv
-          let sliceInfo = this.makeTimeSlice(16, i);
-          console.log('sliceInfo: ', sliceInfo);
-
-          return (
-            <div key={`key-${i}`}>
-              <svg
-                viewBox="0 0 1000 300"
-              >
-                <path
-                  d={
-                    spectrum
-                  }
-                  // totalSlices, sliceIndex, startHue, endHue vv
-                  // TODO: "globalize" the number of slices, etc
-                  style={ this.makeSpectraStyles(16, i, 200, 300) }
-
-                />
-              </svg>
-            </div>
-          )
-        })
-  }
-
-      </div>
-    )
-  };
+					// return <DrawSpectrum spectrum={spectrumWorking}  />
+					return (
+						<div key={`key-${spectrumId}`}>
+							<svg viewBox='0 0 1000 300'>
+								<path
+									d={repeatingSpectrum}
+									// this.totalSpectra, sliceIndex, startHue, endHue vv
+									// TODO: "globalize" the number of slices, etc
+									style={this.makeSpectraStyles(spectrumId, 200, 300)}
+								/>
+							</svg>
+						</div>
+					)
+				})}
+			</div>
+		)
+	}
 }
 
 // const baseStyles = {
@@ -171,4 +179,4 @@ class Bezier05 extends Component {
 //   },
 // }
 
-export default Bezier05;
+export default Bezier05
