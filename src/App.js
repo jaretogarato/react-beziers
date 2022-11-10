@@ -61,6 +61,7 @@ function App() {
 
 			{/* <Bezier03 /> */}
 			<Bezier04 />
+			<h3>&nbsp;</h3>
 			<Bezier05 />
 
 			<svg viewBox='0 0 200 700' style={{ maxHeight: 400 }}>
