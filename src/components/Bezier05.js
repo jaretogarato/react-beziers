@@ -79,14 +79,16 @@ class Bezier05 extends Component {
 			// we are going through 11 frequencies per spectra
 			if (spectrumId === 0) {
 				spectrumWorking[frequencyId] = this.spectrumFirst[frequencyId]
-			} else if (spectrumId === this.totalSpectra - 1) {
-				spectrumWorking[frequencyId] = this.spectrumLast[frequencyId]
-			} else {
+			}
+			// else if (spectrumId === this.totalSpectra - 1) {
+			// 	spectrumWorking[frequencyId] = this.spectrumLast[frequencyId]
+			// }
+			else {
 				// main interpolations for all the other spectra
 				newYIncrement =
 					Math.abs(
 						this.spectrumFirst[frequencyId] - this.spectrumLast[frequencyId]
-					) / this.pointsPerSpectrum
+					) / this.totalSpectra
 
 				if (this.spectrumFirst[frequencyId] > this.spectrumLast[frequencyId]) {
 					console.log(
