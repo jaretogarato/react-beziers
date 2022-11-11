@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import DrawSpectrum from './DrawSpectrum'
 class Bezier05 extends Component {
 	spectrumFirst = [200, 150, 275, 100, 25, 200, 125, 175, 250, 200, 250]
-
 	spectrumLast = [100, 150, 25, 200, 275, 100, 175, 125, 50, 100, 50]
-
 	totalSpectra = 16
 	pointsPerSpectrum = 11
 	spectrumHeight = 300
@@ -13,7 +11,6 @@ class Bezier05 extends Component {
 	// ^^ spectrumWidth / (pointsPerSpectrum - 1);
 	bezierHStretch = 50
 	// ^^ half of colWidth
-
 	colors = [
 		250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320,
 		325,
