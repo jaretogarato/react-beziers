@@ -1,10 +1,7 @@
-import Beziers from './components/Beziers'
-import BezierCurve from './components/BezierCurve'
-import ComeauBezier from './components/ComeauBezier'
-import Bezier03 from './components/Bezier03'
 import Bezier04 from './components/Bezier04'
 import Bezier05 from './components/Bezier05'
-import logo from './logo.svg'
+import Fft01 from './components/Fft01'
+
 import './App.css'
 
 function App() {
@@ -40,26 +37,11 @@ function App() {
 		/>
 	)
 
-	const pathCubic04 = (
-		<path
-			d={`
-        M 25,25
-        C 100,50 25,75 25,100
-        C 25,125 300,150 25,175
-      `}
-			fill='none'
-			stroke='#ff37ea'
-			strokeWidth={15}
-		/>
-	)
-
 	return (
 		<div className='App'>
-			{/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header> */}
+			<div id='plot1'></div>
+			<Fft01 />
 
-			{/* <Bezier03 /> */}
 			<Bezier04 />
 			<h3>&nbsp;</h3>
 			<Bezier05 />
