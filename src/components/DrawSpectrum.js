@@ -5,7 +5,7 @@ const DrawSpectrum = (props) => (
 	// give this a key: vv
 	// <div key={`key-${spectrumId}`}>
 
-	<div key={`key-${props.spectrumId}`}>
+	<div key={`key-${props.spectrumId}`} style={{ height: '20px' }}>
 		<svg viewBox='0 0 1000 300'>
 			<path
 				d={props.spectrum}

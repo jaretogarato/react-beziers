@@ -8,9 +8,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-div {
+/* div {
   height: 20px;
-}
+} */
 
 #cube-1, #cube-2 {
   border: 1px solid orange;

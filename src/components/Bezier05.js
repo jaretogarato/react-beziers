@@ -129,6 +129,7 @@ class Bezier05 extends Component {
 					height: '320px',
 					minHeight: '320px',
 					width: '1020px',
+					position: 'relative',
 				}}
 			>
 				{/* TODO: this should automatically match length of start array */}

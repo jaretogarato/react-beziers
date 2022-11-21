@@ -105,7 +105,14 @@ class Fft01 extends React.Component {
 			// 	layout={{ width: 320, height: 240, title: 'A Fancy Plot' }}
 			// />
 			<>
-				<div style={{ border: '1px solid red', marginBottom: '300px' }}>
+				<div
+					style={{
+						// border: '1px solid red',
+						// marginBottom: '300px',
+						minHeight: '200px',
+						position: 'relative',
+					}}
+				>
 					<Plot
 						data={[trace0]}
 						layout={{ width: 640, height: 480, title: 'Trace0' }}

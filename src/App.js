@@ -1,6 +1,9 @@
 import Bezier04 from './components/Bezier04'
 import Bezier05 from './components/Bezier05'
 import Fft01 from './components/Fft01'
+import ReactWebAudio from './components/ReactWebAudio'
+import 'semantic-ui-css/semantic.min.css'
+import { Grid, Image } from 'semantic-ui-react'
 
 import './App.css'
 
@@ -39,17 +42,54 @@ function App() {
 
 	return (
 		<div className='App'>
-			<div id='plot1'></div>
-			<Fft01 />
+			{/* <ReactWebAudio /> */}
 
-			<Bezier04 />
-			<h3>&nbsp;</h3>
-			<Bezier05 />
+			<Grid columns={1}>
+				{/* <Grid.Row>
+					<Grid.Column>
+						<h1>YOYOYO</h1>
+						<div id='plot1'></div>
+					</Grid.Column>
+				</Grid.Row> */}
 
-			<svg viewBox='0 0 200 700' style={{ maxHeight: 400 }}>
-				{pathA01}
-				{pathA02}
-			</svg>
+				<Grid.Row>
+					<Grid.Column>
+						<Fft01 />
+					</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row>
+					<Grid.Column>
+						<Bezier04 />
+					</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row>
+					<Grid.Column>————————————————————————————————————</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row>
+					<Grid.Column>
+						<Bezier05 />
+					</Grid.Column>
+				</Grid.Row>
+
+				{/* <Grid.Row>
+					<Grid.Column>
+						<div
+							style={{
+								minHeight: '200px',
+								position: 'relative',
+							}}
+						>
+							<svg viewBox='0 0 200 700' style={{ maxHeight: 400 }}>
+								{pathA01}
+								{pathA02}
+							</svg>
+						</div>
+					</Grid.Column>
+				</Grid.Row> */}
+			</Grid>
 
 			{/* <ComeauBezier viewBoxWidth={2500} viewBoxHeight={2500} /> */}
 		</div>
