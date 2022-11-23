@@ -10,6 +10,7 @@
     "fft-js": "0.0.12",
     "plotly.js": "^2.16.1",
     "react": "^18.2.0",
+    "react-audio-spectrum": "^0.1.0",
     "react-bezier": "^1.0.1",
     "react-dom": "^18.2.0",
     "react-plotly.js": "^2.6.0",

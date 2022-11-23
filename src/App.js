@@ -4,6 +4,8 @@ import Fft01 from './components/Fft01'
 import ReactWebAudio from './components/ReactWebAudio'
 import 'semantic-ui-css/semantic.min.css'
 import { Grid, Image } from 'semantic-ui-react'
+import ButtonToggle from './components/ButtonToggle'
+import AudioSpectrumDemo from './components/AudioSpectrumDemo'
 
 import './App.css'
 
@@ -41,20 +43,52 @@ function App() {
 	)
 
 	return (
-		<div className='App'>
+		<div className='App' id='body_container'>
 			{/* <ReactWebAudio /> */}
 
-			<Grid columns={1}>
+			<Grid columns={2}>
 				{/* <Grid.Row>
 					<Grid.Column>
 						<h1>YOYOYO</h1>
 						<div id='plot1'></div>
 					</Grid.Column>
 				</Grid.Row> */}
+				<Grid.Row>
+					<Grid.Column>
+						<ButtonToggle />
+					</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row>
+					<Grid.Column cols='2'>
+						<AudioSpectrumDemo />
+					</Grid.Column>
+				</Grid.Row>
 
 				<Grid.Row>
 					<Grid.Column>
-						<Fft01 />
+						<Fft01 dataName='trace0' />
+					</Grid.Column>
+					<Grid.Column>
+						<Fft01 dataName='trace1' />
+					</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row>
+					<Grid.Column>
+						<Fft01 dataName='trace2' />
+					</Grid.Column>
+					<Grid.Column>
+						<Fft01 dataName='trace3' />
+					</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row>
+					<Grid.Column>
+						<Fft01 dataName='trace4' />
+					</Grid.Column>
+					<Grid.Column>
+						<Fft01 dataName='trace5' />
 					</Grid.Column>
 				</Grid.Row>
 

@@ -43,7 +43,7 @@ class Fft01 extends React.Component {
 		var frequencies = util.fftFreq(phasors, SAMPLE_RATE), // Sample rate and coef is just used for length, and frequency step
 			magnitudes = util.fftMag(phasors)
 
-		console.log(STFT_BLOCK_SIZE, frequencies.length)
+		// console.log(STFT_BLOCK_SIZE, frequencies.length)
 
 		var trace0 = {
 			x: util.fftFreq(phasors0, SAMPLE_RATE),
@@ -89,6 +89,28 @@ class Fft01 extends React.Component {
 			name: 'With Hann window',
 		}
 
+		const { dataName } = this.props
+		let plotData = trace5
+
+		if (dataName == 'trace0') {
+			plotData = trace0
+		}
+		if (dataName == 'trace1') {
+			plotData = trace1
+		}
+		if (dataName == 'trace2') {
+			plotData = trace2
+		}
+		if (dataName == 'trace3') {
+			plotData = trace3
+		}
+		if (dataName == 'trace4') {
+			plotData = trace4
+		}
+		if (dataName == 'trace5') {
+			plotData = trace5
+		}
+
 		return (
 			// Plotly.newPlot('plot1', [trace0])
 			// <Plot
@@ -105,10 +127,8 @@ class Fft01 extends React.Component {
 			// 	layout={{ width: 320, height: 240, title: 'A Fancy Plot' }}
 			// />
 			<>
-				<div
+				{/* <div
 					style={{
-						// border: '1px solid red',
-						// marginBottom: '300px',
 						minHeight: '200px',
 						position: 'relative',
 					}}
@@ -117,11 +137,11 @@ class Fft01 extends React.Component {
 						data={[trace0]}
 						layout={{ width: 640, height: 480, title: 'Trace0' }}
 					/>
-				</div>
+				</div> */}
 				<div>
 					<Plot
-						data={[trace1]}
-						layout={{ width: 640, height: 480, title: 'Trace0' }}
+						data={[plotData]}
+						layout={{ width: 640, height: 480, title: 'Trace1' }}
 					/>
 				</div>
 			</>

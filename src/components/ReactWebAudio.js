@@ -10,7 +10,7 @@ import useConnectNodes from './audioHooks/useConnectNodes'
 import useGain from './audioHooks/useGain'
 import useAudioWorklet from './audioHooks/useAudioWorklet'
 import fft from 'fft-js'
-console.log(fft)
+// console.log(fft)
 
 function drawPath(canvas, canvasCtx, data, divider = 4) {
 	canvasCtx.beginPath()

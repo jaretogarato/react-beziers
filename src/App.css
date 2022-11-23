@@ -6,6 +6,7 @@
   justify-content: flex-start;
   /* border: 3px solid orange; */
   min-height: 100vh;
+  height: 100%;
 }
 
 .column {

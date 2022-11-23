@@ -71,7 +71,7 @@ class Bezier05 extends Component {
 		let frequencyId
 		// TODO: this should automatically match length of start array
 
-		console.log('---spectrumId: ', spectrumId)
+		// console.log('---spectrumId: ', spectrumId)
 		for (frequencyId = 0; frequencyId < this.pointsPerSpectrum; frequencyId++) {
 			// we are going through 11 frequencies per spectra
 			if (spectrumId === 0) {
@@ -88,30 +88,30 @@ class Bezier05 extends Component {
 					) / this.totalSpectra
 
 				if (this.spectrumFirst[frequencyId] > this.spectrumLast[frequencyId]) {
-					console.log(
-						'spectrumWorking[frequencyId]: ',
-						spectrumWorking[frequencyId]
-					)
+					// console.log(
+					// 	'spectrumWorking[frequencyId]: ',
+					// 	spectrumWorking[frequencyId]
+					// )
 					newY = spectrumWorking[frequencyId] - newYIncrement
-					console.log('first is greater')
+					// console.log('first is greater')
 					spectrumWorking[frequencyId] = newY
 				} else if (
 					this.spectrumFirst[frequencyId] < this.spectrumLast[frequencyId]
 				) {
 					newY = spectrumWorking[frequencyId] + newYIncrement
-					console.log('last is greater')
+					// console.log('last is greater')
 					spectrumWorking[frequencyId] = newY
 				} else {
 					spectrumWorking[frequencyId] = this.spectrumFirst[frequencyId]
-					console.log('they are equal')
+					// console.log('they are equal')
 				}
 				// console.log('newY: ', newY)
 			}
 		}
-		console.log('---')
-		console.log('spectrumId: ', spectrumId)
-		console.log('spectrumWorking: ')
-		console.log(spectrumWorking)
+		// console.log('---')
+		// console.log('spectrumId: ', spectrumId)
+		// console.log('spectrumWorking: ')
+		// console.log(spectrumWorking)
 		return spectrumWorking
 	}
 
@@ -136,9 +136,9 @@ class Bezier05 extends Component {
 				{this.colors.map((point, spectrumId) => {
 					sliceData = this.makeTimeSlice(spectrumId, spectrumWorking)
 					thisSlice = this.bezierPoints(sliceData)
-					console.log('--sliceData--- ', sliceData)
-					console.log('=================')
-					console.log('\n\n')
+					// console.log('--sliceData--- ', sliceData)
+					// console.log('=================')
+					// console.log('\n\n')
 
 					return (
 						<DrawSpectrum
