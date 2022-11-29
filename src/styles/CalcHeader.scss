@@ -1,0 +1,14 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+#calc-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#calc-back-btn {
+  @include button;
+  padding: clamp(.2em, 1vh, 1em) clamp(1em, 5vw, 2em);
+}

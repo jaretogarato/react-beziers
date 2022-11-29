@@ -1,0 +1,28 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+#header {
+  padding: clamp(.5em, 8vw, 1.5em);
+  @include colProp(primary, background-color);
+}
+
+#header-txt {
+  @include colProp(secondary, color);
+}
+
+#header-v-num {
+  font-size: 1.1em;
+  @include colProp(secondary, color);
+}
+
+#theme-switch {
+  margin: clamp(.1vh, 3%, 2vh) auto auto;
+}
+
+.icon-contain {
+  display: flex;
+  height: inherit;
+  width: inherit;
+  justify-content: center;
+  align-items: center;
+}

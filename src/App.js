@@ -7,46 +7,48 @@ import { Grid, Image } from 'semantic-ui-react'
 import ButtonToggle from './components/ButtonToggle'
 import AudioSpectrumDemo from './components/AudioSpectrumDemo'
 
-import './App.css'
+import './styles/styles.js'
+// import './styles/App.scss'
+// import './App.css'
 
 function App() {
-	const startPoint = [25, 25]
-	const controlPoint = [300, 275]
-	const endPoint = [25, 325]
+	// const startPoint = [25, 25]
+	// const controlPoint = [300, 275]
+	// const endPoint = [25, 325]
 
-	const startPointA02 = [25, 325]
-	const controlPointA02 = [300, 575]
-	const endPointA02 = [25, 650]
+	// const startPointA02 = [25, 325]
+	// const controlPointA02 = [300, 575]
+	// const endPointA02 = [25, 650]
 
-	const pathA01 = (
-		<path
-			d={`
-        M ${startPoint}
-        Q ${controlPoint} ${endPoint}
-      `}
-			fill='none'
-			stroke='hotpink'
-			strokeWidth={5}
-		/>
-	)
+	// const pathA01 = (
+	// 	<path
+	// 		d={`
+	//       M ${startPoint}
+	//       Q ${controlPoint} ${endPoint}
+	//     `}
+	// 		fill='none'
+	// 		stroke='hotpink'
+	// 		strokeWidth={5}
+	// 	/>
+	// )
 
-	const pathA02 = (
-		<path
-			d={`
-        M ${startPointA02}
-        Q ${controlPointA02} ${endPointA02}
-      `}
-			fill='none'
-			stroke='hotpink'
-			strokeWidth={5}
-		/>
-	)
+	// const pathA02 = (
+	// 	<path
+	// 		d={`
+	//       M ${startPointA02}
+	//       Q ${controlPointA02} ${endPointA02}
+	//     `}
+	// 		fill='none'
+	// 		stroke='hotpink'
+	// 		strokeWidth={5}
+	// 	/>
+	// )
 
 	return (
 		<div className='App' id='body_container'>
 			{/* <ReactWebAudio /> */}
 
-			<Grid columns={2}>
+			<Grid celled columns={2}>
 				{/* <Grid.Row>
 					<Grid.Column>
 						<h1>YOYOYO</h1>
@@ -55,14 +57,17 @@ function App() {
 				</Grid.Row> */}
 				<Grid.Row>
 					<Grid.Column>
+						<h1>AmberWord</h1>
+						<p>Spectra slices over time</p>
+					</Grid.Column>
+					<Grid.Column>
 						<ButtonToggle />
 					</Grid.Column>
 				</Grid.Row>
 
 				<Grid.Row>
-					<Grid.Column cols='2'>
-						<AudioSpectrumDemo />
-					</Grid.Column>
+					<Grid.Column>xxx</Grid.Column>
+					<Grid.Column>ooo</Grid.Column>
 				</Grid.Row>
 
 				<Grid.Row>
@@ -89,6 +94,12 @@ function App() {
 					</Grid.Column>
 					<Grid.Column>
 						<Fft01 dataName='trace5' />
+					</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row>
+					<Grid.Column>
+						<AudioSpectrumDemo />
 					</Grid.Column>
 				</Grid.Row>
 

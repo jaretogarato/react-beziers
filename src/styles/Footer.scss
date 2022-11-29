@@ -1,0 +1,29 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+footer {
+  padding: 3em;
+  @include colProp(primary, background-color);
+}
+
+#author-txt {
+  font-size: 1.2em;
+  margin: .5em 1em;
+  @include colProp(secondary, color);
+}
+
+#license-txt {
+  font-size: .9em;
+  margin: .5em 1em;
+  @include colProp(secondary, color);
+}
+
+#notice-txt {
+  @include colProp(secondary, color);
+  margin: 2em 1em .2em;
+}
+
+footer a {
+  text-decoration: none;
+  @include link;
+}

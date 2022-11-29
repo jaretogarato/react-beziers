@@ -1,0 +1,59 @@
+@mixin a-button($base, $hover, $link) {
+  a {
+     background-color: $base;
+     color: white;
+     radius: 3px;
+     margin: 2px;
+
+     &:hover {
+        color: $hover;
+     }
+
+     &:visited {
+        color: $link;
+     }
+  }
+}
+
+@mixin theme($bg-color,$font-color,$menu,$card-bg) {
+  background-color: $bg-color;
+  color: $font-color;
+  .menu {
+    background-color: $menu;
+    .menu.transition.visible {
+      background-color: $menu;
+    }
+  }
+  .text {
+    color: $font-color;
+  }
+  .ui.card {
+    background-color: $card-bg;
+    .header,
+    .meta {
+      color: $font-color;
+    }
+  }
+}
+
+
+// .theme(@bg-color,@font-color,@menu,@card-bg) {
+//   background-color: @bg-color;
+//   color: @font-color;
+//   .menu {
+//     background-color: @menu;
+//     .menu.transition.visible {
+//       background-color: @menu;
+//     }
+//   }
+//   .text {
+//     color: @font-color;
+//   }
+//   .ui.card {
+//     background-color: @card-bg;
+//     .header,
+//     .meta {
+//       color: @font-color;
+//     }
+//   }
+// }

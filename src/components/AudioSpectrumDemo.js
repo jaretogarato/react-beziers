@@ -11,9 +11,10 @@ import AudioSpectrum from 'react-audio-spectrum'
 
 import Fantasy from '../audio/fantasy.mp3'
 import Mastering from '../audio/mastering-and-managing.mp3'
+import AHarmonic from '../audio/a-5th-fret-harmonic.wav'
 import Noche from '../audio/noche-de-ronda.mp3'
 import Ojos from '../audio/yo-vendo-unos-ojos-negros.mp3'
-
+import FourChords from '../audio/4-chords.ogg'
 class AudioSpectrumDemo extends Component {
 	constructor(props) {
 		super(props)
@@ -26,7 +27,7 @@ class AudioSpectrumDemo extends Component {
 		this.audioEle = null
 		this.audioEle1 = null
 		this.audioEle2 = null
-		this.playlist = [Fantasy, Mastering, Noche, Ojos]
+		this.playlist = [Fantasy, AHarmonic, Noche, FourChords]
 		this.audioEle3 = new Audio(this.playlist[3])
 		this.playInfoList = [
 			{

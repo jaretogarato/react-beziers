@@ -1,0 +1,25 @@
+@use 'InitialQuestion.scss';
+@import 'variables.scss';
+@import 'mixins.scss';
+
+#gpa-head {
+  animation: appear .5s ease-out 0s forwards;
+}
+
+#gpa-calc-types {
+  @include calcTypes;
+}
+
+#gpa-calc-option {
+  @include linkBtn;
+}
+
+#scale-li-lbl {
+  padding: 1em;
+  font-weight: 500;
+}
+
+#back-btn {
+  @include button;
+  padding: clamp(.5em, 4vh, 1em) clamp(1em, 5vw, 2em);
+}

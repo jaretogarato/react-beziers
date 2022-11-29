@@ -1,0 +1,40 @@
+@import 'variables.scss';
+@import 'animations.scss';
+@import 'mixins.scss';
+
+#calc-body {
+  @include pageBackground;
+}
+
+#calc-els {
+  opacity: 0;
+  background: none;
+  animation: slide 1s ease-out 0s forwards;
+}
+
+form ul li {
+  list-style: none;
+}
+
+button {
+  text-align: center;
+}
+
+#calc-body input {
+  padding: .4em;
+}
+
+#label-and-help {
+  padding: 1em;
+}
+
+#help-btn {
+  @include button;
+  cursor: help !important;
+  padding: clamp(.2em, .5vh, .8em) clamp(.5em, 2.5vw, 1em);
+  margin: 0em clamp(.5em, 1vw, 1em);
+}
+
+#submit-btn {
+  @include button;
+}
