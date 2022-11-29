@@ -132,8 +132,6 @@ class Bezier04 extends Component {
 			<div
 				id='chaka'
 				style={{
-					backgroundColor: 'white',
-					// border: 'gray 10px solid',
 					padding: '10px',
 					height: '320px',
 					minHeight: '320px',

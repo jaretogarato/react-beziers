@@ -1,142 +1,79 @@
-import Bezier04 from './components/Bezier04'
-import Bezier05 from './components/Bezier05'
-import Fft01 from './components/Fft01'
-import ReactWebAudio from './components/ReactWebAudio'
+import React, { useContext } from 'react'
+import ConsoleHelper from './ConsoleHelper'
 import 'semantic-ui-css/semantic.min.css'
-import { Grid, Image } from 'semantic-ui-react'
-import ButtonToggle from './components/ButtonToggle'
-import AudioSpectrumDemo from './components/AudioSpectrumDemo'
-
+import { ThemeContext } from './components/themeContext'
+import { Header, Footer, Error404, Home } from './components'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './styles/styles.js'
-// import './styles/App.scss'
-// import './App.css'
 
-function App() {
-	// const startPoint = [25, 25]
-	// const controlPoint = [300, 275]
-	// const endPoint = [25, 325]
+let actx = new AudioContext()
+let out = actx.destination
+let osc1 = actx.createOscillator()
+let gain1 = actx.createGain()
 
-	// const startPointA02 = [25, 325]
-	// const controlPointA02 = [300, 575]
-	// const endPointA02 = [25, 650]
+osc1.connect(gain1)
+gain1.connect(out)
 
-	// const pathA01 = (
-	// 	<path
-	// 		d={`
-	//       M ${startPoint}
-	//       Q ${controlPoint} ${endPoint}
-	//     `}
-	// 		fill='none'
-	// 		stroke='hotpink'
-	// 		strokeWidth={5}
-	// 	/>
-	// )
+// osc1.start()
 
-	// const pathA02 = (
-	// 	<path
-	// 		d={`
-	//       M ${startPointA02}
-	//       Q ${controlPointA02} ${endPointA02}
-	//     `}
-	// 		fill='none'
-	// 		stroke='hotpink'
-	// 		strokeWidth={5}
-	// 	/>
-	// )
+// function App() {
+//   return(
+
+//   )
+// }
+class App extends React.Component {
+	state = {
+		theme:
+			localStorage.getItem('theme_key') !== null
+				? localStorage.getItem('theme_key')
+				: 'light',
+		toggleTheme: this.toggleTheme,
+	}
+
+	toggleTheme = () => {
+		localStorage.setItem(
+			'theme_key',
+			this.state.theme === 'light' ? 'dark' : 'light'
+		)
+
+		this.setState((state) => ({
+			theme: state.theme === 'light' ? 'dark' : 'light',
+		}))
+
+		ConsoleHelper('Current theme: ' + this.state.theme)
+	}
+
+	render() {
+		return (
+			<ThemeContext.Provider value={this.state}>
+				<AppContent />
+			</ThemeContext.Provider>
+		)
+	}
+}
+
+const AppContent = () => {
+	const { theme } = useContext(ThemeContext)
 
 	return (
-		<div className='App' id='body_container'>
-			{/* <ReactWebAudio /> */}
-
-			<Grid celled columns={2}>
-				{/* <Grid.Row>
-					<Grid.Column>
-						<h1>YOYOYO</h1>
-						<div id='plot1'></div>
-					</Grid.Column>
-				</Grid.Row> */}
-				<Grid.Row>
-					<Grid.Column>
-						<h1>AmberWord</h1>
-						<p>Spectra slices over time</p>
-					</Grid.Column>
-					<Grid.Column>
-						<ButtonToggle />
-					</Grid.Column>
-				</Grid.Row>
-
-				<Grid.Row>
-					<Grid.Column>xxx</Grid.Column>
-					<Grid.Column>ooo</Grid.Column>
-				</Grid.Row>
-
-				<Grid.Row>
-					<Grid.Column>
-						<Fft01 dataName='trace0' />
-					</Grid.Column>
-					<Grid.Column>
-						<Fft01 dataName='trace1' />
-					</Grid.Column>
-				</Grid.Row>
-
-				<Grid.Row>
-					<Grid.Column>
-						<Fft01 dataName='trace2' />
-					</Grid.Column>
-					<Grid.Column>
-						<Fft01 dataName='trace3' />
-					</Grid.Column>
-				</Grid.Row>
-
-				<Grid.Row>
-					<Grid.Column>
-						<Fft01 dataName='trace4' />
-					</Grid.Column>
-					<Grid.Column>
-						<Fft01 dataName='trace5' />
-					</Grid.Column>
-				</Grid.Row>
-
-				<Grid.Row>
-					<Grid.Column>
-						<AudioSpectrumDemo />
-					</Grid.Column>
-				</Grid.Row>
-
-				<Grid.Row>
-					<Grid.Column>
-						<Bezier04 />
-					</Grid.Column>
-				</Grid.Row>
-
-				<Grid.Row>
-					<Grid.Column>————————————————————————————————————</Grid.Column>
-				</Grid.Row>
-
-				<Grid.Row>
-					<Grid.Column>
-						<Bezier05 />
-					</Grid.Column>
-				</Grid.Row>
-
-				{/* <Grid.Row>
-					<Grid.Column>
-						<div
-							style={{
-								minHeight: '200px',
-								position: 'relative',
-							}}
-						>
-							<svg viewBox='0 0 200 700' style={{ maxHeight: 400 }}>
-								{pathA01}
-								{pathA02}
-							</svg>
-						</div>
-					</Grid.Column>
-				</Grid.Row> */}
-			</Grid>
-
-			{/* <ComeauBezier viewBoxWidth={2500} viewBoxHeight={2500} /> */}
+		<div id='App' className={theme}>
+			<Router>
+				<Header />
+				<button onClick={() => osc1.start()}>Start</button>
+				<button onClick={() => osc1.stop()}>Stop</button>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					{/* <Route path='/scales' element={<Scales />} />
+					<Route path='/semester-exam' element={<SemesterExam />} />
+					<Route path='/test-grade' element={<TestGrade />} />
+					<Route path='/gpa' element={<GPACalc />} />
+					<Route path='/gpa/weighted' element={<GPAWeightedCalc />} />
+					<Route path='/gpa/un-weighted' element={<GPAUnWeightedCalc />} />
+					<Route path='/gpa/custom' element={<GPACustomCalc />} />
+					<Route path='*' element={<Error404 />} /> */}
+				</Routes>
+			</Router>
+			<Footer />
 		</div>
 	)
 }
