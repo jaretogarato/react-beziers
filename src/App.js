@@ -30,7 +30,6 @@ function App() {
 	}
 
 	const changeOsc1Freq = (e) => {
-		// console.log(e.target.value)
 		let { value } = e.target
 		setOsc1Freq(value)
 		osc1.frequency.value = value
@@ -38,7 +37,6 @@ function App() {
 
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
-			{/* <AppContent /> */}
 			<div id='App' className={theme}>
 				<Router>
 					<Header />
@@ -47,13 +45,6 @@ function App() {
 					<Osc1 changeFreq={changeOsc1Freq} freq={osc1Freq} />
 					<Routes>
 						<Route path='/' element={<Home />} />
-						{/* <Route path='/scales' element={<Scales />} />
-            <Route path='/semester-exam' element={<SemesterExam />} />
-            <Route path='/test-grade' element={<TestGrade />} />
-            <Route path='/gpa' element={<GPACalc />} />
-            <Route path='/gpa/weighted' element={<GPAWeightedCalc />} />
-            <Route path='/gpa/un-weighted' element={<GPAUnWeightedCalc />} />
-            <Route path='/gpa/custom' element={<GPACustomCalc />} /> */}
 						<Route path='*' element={<Error404 />} />
 					</Routes>
 				</Router>
@@ -62,32 +53,5 @@ function App() {
 		</ThemeContext.Provider>
 	)
 }
-
-// const AppContent = () => {
-// 	const { theme } = useContext(ThemeContext)
-
-// 	return (
-// 		<div id='App' className={theme}>
-// 			<Router>
-// 				<Header />
-// 				<button onClick={() => osc1.start()}>Start</button>
-// 				<button onClick={() => osc1.stop()}>Stop</button>
-// 				{/* <Osc1 changeFreq={this.changeOsc1Freq} /> */}
-// 				<Routes>
-// 					<Route path='/' element={<Home />} />
-// 					{/* <Route path='/scales' element={<Scales />} />
-// 					<Route path='/semester-exam' element={<SemesterExam />} />
-// 					<Route path='/test-grade' element={<TestGrade />} />
-// 					<Route path='/gpa' element={<GPACalc />} />
-// 					<Route path='/gpa/weighted' element={<GPAWeightedCalc />} />
-// 					<Route path='/gpa/un-weighted' element={<GPAUnWeightedCalc />} />
-// 					<Route path='/gpa/custom' element={<GPACustomCalc />} /> */}
-// 					<Route path='*' element={<Error404 />} />
-// 				</Routes>
-// 			</Router>
-// 			<Footer />
-// 		</div>
-// 	)
-// }
 
 export default App

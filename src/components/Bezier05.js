@@ -47,7 +47,6 @@ class Bezier05 extends Component {
 					' '
 			}
 		})
-		// console.log('()() ', cubicPoints)
 		return cubicPoints
 	}
 
@@ -71,47 +70,30 @@ class Bezier05 extends Component {
 		let frequencyId
 		// TODO: this should automatically match length of start array
 
-		// console.log('---spectrumId: ', spectrumId)
 		for (frequencyId = 0; frequencyId < this.pointsPerSpectrum; frequencyId++) {
 			// we are going through 11 frequencies per spectra
 			if (spectrumId === 0) {
 				spectrumWorking[frequencyId] = this.spectrumFirst[frequencyId]
-			}
-			// else if (spectrumId === this.totalSpectra - 1) {
-			// 	spectrumWorking[frequencyId] = this.spectrumLast[frequencyId]
-			// }
-			else {
-				// main interpolations for all the other spectra
+			} else {
 				newYIncrement =
 					Math.abs(
 						this.spectrumFirst[frequencyId] - this.spectrumLast[frequencyId]
 					) / this.totalSpectra
 
 				if (this.spectrumFirst[frequencyId] > this.spectrumLast[frequencyId]) {
-					// console.log(
-					// 	'spectrumWorking[frequencyId]: ',
-					// 	spectrumWorking[frequencyId]
-					// )
 					newY = spectrumWorking[frequencyId] - newYIncrement
-					// console.log('first is greater')
 					spectrumWorking[frequencyId] = newY
 				} else if (
 					this.spectrumFirst[frequencyId] < this.spectrumLast[frequencyId]
 				) {
 					newY = spectrumWorking[frequencyId] + newYIncrement
-					// console.log('last is greater')
 					spectrumWorking[frequencyId] = newY
 				} else {
 					spectrumWorking[frequencyId] = this.spectrumFirst[frequencyId]
-					// console.log('they are equal')
 				}
-				// console.log('newY: ', newY)
 			}
 		}
-		// console.log('---')
-		// console.log('spectrumId: ', spectrumId)
-		// console.log('spectrumWorking: ')
-		// console.log(spectrumWorking)
+
 		return spectrumWorking
 	}
 
@@ -119,6 +101,7 @@ class Bezier05 extends Component {
 		let spectrumWorking = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 		let sliceData
 		let thisSlice
+		let sliceKey
 
 		return (
 			<div
@@ -136,15 +119,14 @@ class Bezier05 extends Component {
 				{this.colors.map((point, spectrumId) => {
 					sliceData = this.makeTimeSlice(spectrumId, spectrumWorking)
 					thisSlice = this.bezierPoints(sliceData)
-					// console.log('--sliceData--- ', sliceData)
-					// console.log('=================')
-					// console.log('\n\n')
+					sliceKey = `spectrumKey-${point}`
 
 					return (
 						<DrawSpectrum
 							spectrum={thisSlice}
 							spectrumId={spectrumId}
 							spectrumStyle={this.makeSpectraStyles(spectrumId, 200, 300)}
+							key={sliceKey}
 						/>
 					)
 				})}
