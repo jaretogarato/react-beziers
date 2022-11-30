@@ -66,9 +66,7 @@ export default function Home() {
 					</Grid.Row>
 
 					<Grid.Row>
-						<Grid.Column>
-							<Bezier05 />
-						</Grid.Column>
+						<Grid.Column>{/* <Bezier05 /> */}</Grid.Column>
 					</Grid.Row>
 				</Grid>
 

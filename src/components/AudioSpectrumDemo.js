@@ -119,7 +119,7 @@ class AudioSpectrumDemo extends Component {
 	}
 
 	render() {
-		console.log('fantasy: ', Fantasy)
+		// console.log('fantasy: ', Fantasy)
 		return (
 			<div className='App'>
 				<div className='container'>

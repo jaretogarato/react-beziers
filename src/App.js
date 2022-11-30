@@ -16,105 +16,78 @@ osc1.connect(gain1)
 gain1.connect(out)
 
 function App() {
+	const [osc1Freq, setOsc1Freq] = useState(osc1.frequency.value)
 	const [theme, setTheme] = useState(
 		localStorage.getItem('theme_key') !== null
 			? localStorage.getItem('theme_key')
 			: 'light'
 	)
-	// const [toggleTheme, setToggleTheme] = useState(toggleThemer())
-
-	// toggleTheme: this.toggleTheme
-
-	// state = {
-	// 	theme:
-	// 		localStorage.getItem('theme_key') !== null
-	// 			? localStorage.getItem('theme_key')
-	// 			: 'light',
-	// 	toggleTheme: this.toggleTheme,
-	// }
-
-	const changeOsc1Freq = (e) => {
-		console.log(e.target.value)
-	}
 
 	const toggleTheme = () => {
 		localStorage.setItem('theme_key', theme === 'light' ? 'dark' : 'light')
-
 		setTheme(theme === 'light' ? 'dark' : 'light')
-
 		ConsoleHelper('Current theme: ' + theme)
+	}
+
+	const changeOsc1Freq = (e) => {
+		// console.log(e.target.value)
+		let { value } = e.target
+		setOsc1Freq(value)
+		osc1.frequency.value = value
 	}
 
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
-			<AppContent />
+			{/* <AppContent /> */}
+			<div id='App' className={theme}>
+				<Router>
+					<Header />
+					<button onClick={() => osc1.start()}>Start</button>
+					<button onClick={() => osc1.stop()}>Stop</button>
+					<Osc1 changeFreq={changeOsc1Freq} freq={osc1Freq} />
+					<Routes>
+						<Route path='/' element={<Home />} />
+						{/* <Route path='/scales' element={<Scales />} />
+            <Route path='/semester-exam' element={<SemesterExam />} />
+            <Route path='/test-grade' element={<TestGrade />} />
+            <Route path='/gpa' element={<GPACalc />} />
+            <Route path='/gpa/weighted' element={<GPAWeightedCalc />} />
+            <Route path='/gpa/un-weighted' element={<GPAUnWeightedCalc />} />
+            <Route path='/gpa/custom' element={<GPACustomCalc />} /> */}
+						<Route path='*' element={<Error404 />} />
+					</Routes>
+				</Router>
+				<Footer />
+			</div>
 		</ThemeContext.Provider>
 	)
 }
 
-// class App extends React.Component {
-// 	constructor(props) {
-// 		super(props)
-// 		this.state = {
-// 			theme:
-// 				localStorage.getItem('theme_key') !== null
-// 					? localStorage.getItem('theme_key')
-// 					: 'light',
-// 			toggleTheme: this.toggleTheme,
-// 		}
-// 	}
+// const AppContent = () => {
+// 	const { theme } = useContext(ThemeContext)
 
-// 	toggleTheme = () => {
-// 		localStorage.setItem(
-// 			'theme_key',
-// 			this.state.theme === 'light' ? 'dark' : 'light'
-// 		)
-
-// 		this.setState((state) => ({
-// 			theme: state.theme === 'light' ? 'dark' : 'light',
-// 		}))
-
-// 		ConsoleHelper('Current theme: ' + this.state.theme)
-// 	}
-
-// 	changeOsc1Freq = (e) => {
-// 		console.log(e.target.value)
-// 	}
-
-// 	render() {
-// 		return (
-// 			<ThemeContext.Provider value={this.state}>
-// 				<AppContent />
-// 			</ThemeContext.Provider>
-// 		)
-// 	}
+// 	return (
+// 		<div id='App' className={theme}>
+// 			<Router>
+// 				<Header />
+// 				<button onClick={() => osc1.start()}>Start</button>
+// 				<button onClick={() => osc1.stop()}>Stop</button>
+// 				{/* <Osc1 changeFreq={this.changeOsc1Freq} /> */}
+// 				<Routes>
+// 					<Route path='/' element={<Home />} />
+// 					{/* <Route path='/scales' element={<Scales />} />
+// 					<Route path='/semester-exam' element={<SemesterExam />} />
+// 					<Route path='/test-grade' element={<TestGrade />} />
+// 					<Route path='/gpa' element={<GPACalc />} />
+// 					<Route path='/gpa/weighted' element={<GPAWeightedCalc />} />
+// 					<Route path='/gpa/un-weighted' element={<GPAUnWeightedCalc />} />
+// 					<Route path='/gpa/custom' element={<GPACustomCalc />} /> */}
+// 					<Route path='*' element={<Error404 />} />
+// 				</Routes>
+// 			</Router>
+// 			<Footer />
+// 		</div>
+// 	)
 // }
-
-const AppContent = () => {
-	const { theme } = useContext(ThemeContext)
-
-	return (
-		<div id='App' className={theme}>
-			<Router>
-				<Header />
-				<button onClick={() => osc1.start()}>Start</button>
-				<button onClick={() => osc1.stop()}>Stop</button>
-				{/* <Osc1 changeFreq={this.changeOsc1Freq} /> */}
-				<Routes>
-					<Route path='/' element={<Home />} />
-					{/* <Route path='/scales' element={<Scales />} />
-					<Route path='/semester-exam' element={<SemesterExam />} />
-					<Route path='/test-grade' element={<TestGrade />} />
-					<Route path='/gpa' element={<GPACalc />} />
-					<Route path='/gpa/weighted' element={<GPAWeightedCalc />} />
-					<Route path='/gpa/un-weighted' element={<GPAUnWeightedCalc />} />
-					<Route path='/gpa/custom' element={<GPACustomCalc />} /> */}
-					<Route path='*' element={<Error404 />} />
-				</Routes>
-			</Router>
-			<Footer />
-		</div>
-	)
-}
 
 export default App
