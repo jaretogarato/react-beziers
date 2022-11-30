@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import Osc1 from './Osc1'
+import FreqControl from './FreqControl'
+import LogarithmicRange from './logarithmic-inputs/LogarithmicRange'
 
 // let actx = new AudioContext()
 // let out = actx.destination
@@ -9,7 +10,7 @@ import Osc1 from './Osc1'
 // osc1.connect(gain1)
 // gain1.connect(out)
 
-function WebAudioOscillator({ audioContext, output, oscillator, gain }) {
+function WebAudioOscillator({ oscillator }) {
 	let [oscFreq, setOscFreq] = useState(oscillator.frequency.value)
 
 	const changeOscFreq = (e) => {
@@ -18,16 +19,20 @@ function WebAudioOscillator({ audioContext, output, oscillator, gain }) {
 		oscillator.frequency.value = value
 	}
 
-	console.log('oooscillator: ', oscillator)
-	console.log('oooscillator.frequency.value: ', oscillator.frequency.value)
+	const handleChange = (newValues) => {
+		console.log(newValues)
+	}
 
 	return (
 		<>
 			<div>
 				<h1>WebAudioFileIn</h1>
+				<h3>log input</h3>
+				<LogarithmicRange onChange={handleChange} />
+				<h5>---------------------</h5>
 				<button onClick={() => oscillator.start()}>Start</button>
 				<button onClick={() => oscillator.stop()}>Stop</button>
-				<Osc1 changeFreq={changeOscFreq} freq={oscFreq} />
+				<FreqControl changeFreq={changeOscFreq} freq={oscFreq} />
 			</div>
 		</>
 	)

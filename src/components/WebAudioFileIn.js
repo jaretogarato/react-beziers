@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Osc1 from './Osc1'
+import Osc1 from './FreqControl'
 
 let actx = new AudioContext()
 let out = actx.destination

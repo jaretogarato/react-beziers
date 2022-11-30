@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Osc1 = ({ changeFreq, freq }) => {
+const FreqControl = ({ changeFreq, freq }) => {
 	return (
 		<div>
 			<input
@@ -14,4 +14,4 @@ const Osc1 = ({ changeFreq, freq }) => {
 	)
 }
 
-export default Osc1
+export default FreqControl
