@@ -5,7 +5,6 @@ const Osc1 = ({ changeFreq, freq }) => {
 		<div>
 			<input
 				value={freq}
-				// min='20'
 				max='5000'
 				onChange={changeFreq}
 				type='range'

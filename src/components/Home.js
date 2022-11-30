@@ -8,6 +8,7 @@ import AudioSpectrumDemo from './AudioSpectrumDemo'
 import Bezier04 from './Bezier04'
 import Bezier05 from './Bezier05'
 import WebAudioFileIn from './WebAudioFileIn'
+import WebAudioApiHoc from './WebAudioApiHoc'
 
 export default function Home() {
 	const { theme } = useContext(ThemeContext)
@@ -27,7 +28,8 @@ export default function Home() {
 
 					<Grid.Row>
 						<Grid.Column>
-							<WebAudioFileIn />
+							{/* <WebAudioFileIn /> */}
+							<WebAudioApiHoc />
 						</Grid.Column>
 					</Grid.Row>
 
