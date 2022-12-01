@@ -16,7 +16,7 @@ export default function WebAudioApiHoc() {
 	return (
 		<>
 			<div>
-				<h1>WebAudioApiHoc</h1>
+				<h1>Web Audio API HOC</h1>
 				<WebAudioOscillator oscillator={osc1} />
 			</div>
 		</>

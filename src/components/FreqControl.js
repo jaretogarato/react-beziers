@@ -5,7 +5,7 @@ const FreqControl = ({ changeFreq, freq }) => {
 		<div>
 			<input
 				value={freq}
-				max='5000'
+				max='10000'
 				onChange={changeFreq}
 				type='range'
 				id='frequency'

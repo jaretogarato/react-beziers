@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FreqControl from './FreqControl'
 import LogarithmicRange from './logarithmic-inputs/LogarithmicRange'
+import LogarithmicSlider from './logarithmic-inputs/LogarithmicSlider'
 
 // let actx = new AudioContext()
 // let out = actx.destination
@@ -14,6 +15,7 @@ function WebAudioOscillator({ oscillator }) {
 	let [oscFreq, setOscFreq] = useState(oscillator.frequency.value)
 
 	const changeOscFreq = (e) => {
+		console.log(e)
 		let { value } = e.target
 		setOscFreq(value)
 		oscillator.frequency.value = value
@@ -21,18 +23,22 @@ function WebAudioOscillator({ oscillator }) {
 
 	const handleChange = (newValues) => {
 		console.log(newValues)
+		console.log(newValues.value)
+		let value = newValues.value
+		setOscFreq(value)
+		oscillator.frequency.value = value
 	}
 
 	return (
 		<>
 			<div>
-				<h1>WebAudioFileIn</h1>
-				<h3>log input</h3>
-				<LogarithmicRange onChange={handleChange} />
+				<h3>WebAudioOscillator</h3>
 				<h5>---------------------</h5>
 				<button onClick={() => oscillator.start()}>Start</button>
 				<button onClick={() => oscillator.stop()}>Stop</button>
-				<FreqControl changeFreq={changeOscFreq} freq={oscFreq} />
+				{/* <FreqControl changeFreq={changeOscFreq} freq={oscFreq} /> */}
+				{/* linear ^^ */}
+				<LogarithmicRange onChange={handleChange} defaultValue={oscFreq} />
 			</div>
 		</>
 	)

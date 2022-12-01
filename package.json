@@ -9,6 +9,7 @@
     "bezier-curve": "^1.0.0",
     "fft-js": "0.0.12",
     "plotly.js": "^2.16.1",
+    "rc-slider": "^10.1.0",
     "react": "^18.2.0",
     "react-audio-spectrum": "^0.1.0",
     "react-bezier": "^1.0.1",
