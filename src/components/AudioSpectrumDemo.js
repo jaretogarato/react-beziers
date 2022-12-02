@@ -176,7 +176,7 @@ class AudioSpectrumDemo extends Component {
 							]}
 							gap={4}
 						/>
-						<p>meterWidth: 10</p>
+						<p>meterWidth: *10* </p>
 					</div>
 					<div className='card'>
 						{this.state.audioStatus2 === 'PAUSED' ? (

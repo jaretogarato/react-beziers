@@ -28,7 +28,6 @@ export default function Home() {
 
 					<Grid.Row>
 						<Grid.Column>
-							{/* <WebAudioFileIn /> */}
 							<WebAudioApiHoc />
 						</Grid.Column>
 					</Grid.Row>

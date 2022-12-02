@@ -30,10 +30,10 @@ const Header = () => {
 						<Container id='header'>
 							<NavLink to='/'>
 								<h1 id='header-txt' className={theme}>
-									Awesome School Calc
+									Amber Word
 								</h1>
 								<h2 id='header-v-num' className={theme}>
-									v1.1.3
+									Words Captured In Physical Form
 								</h2>
 							</NavLink>
 							<Container id='theme-switch'>

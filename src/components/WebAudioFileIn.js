@@ -1,29 +1,58 @@
-import React, { useState } from 'react'
-import Osc1 from './FreqControl'
+import React, { useState, useEffect } from 'react'
+import Fantasy from '../audio/fantasy.mp3'
+import AHarmonic from '../audio/a-5th-fret-harmonic.wav'
+import FourChords from '../audio/4-chords.ogg'
 
-let actx = new AudioContext()
-let out = actx.destination
+export default function WebAudioFileIn({ actx, sound }) {
+	const [song, setSong] = useState(sound)
+	const [audioContext, setAudioContext] = useState(actx)
+	const [audioElement, setAudioElement] = useState()
 
-let osc1 = actx.createOscillator()
-let gain1 = actx.createGain()
-osc1.connect(gain1)
-gain1.connect(out)
+	useEffect(() => {
+		// const AudioContext = window.AudioContext ||      window.webkitAudioContext;
+		// const audioContext = new AudioContext();
+		// this.setState({audioContext: audioContext})
+		setAudioContext(actx)
+		console.log('vvv')
+		console.log(actx)
+		console.log(audioContext)
+		console.log('^^^')
+		setSong(sound)
+		// const audioElement = document.querySelector('audio')
+		// this.setState({audioElement:audioElement})
+		// setAudioElement(audioEl)
+		console.log('song: ', song)
+		const nsong = new Audio(song)
+		console.log('nsong: ', nsong)
+		setAudioElement(nsong)
+		console.log('audioElement: ', audioElement)
 
-export default function WebAudioFileIn() {
-	const [osc1Freq, setOsc1Freq] = useState(osc1.frequency.value)
+		// const track = audioContext.createMediaElementSource(audioElement)
+		// console.log('track: ', track)
+		// track.connect(audioContext.destination)
+	}, [])
 
-	const changeOsc1Freq = (e) => {
-		let { value } = e.target
-		setOsc1Freq(value)
-		osc1.frequency.value = value
-	}
+	// const changeOsc1Freq = (e) => {
+	// 	let { value } = e.target
+	// 	setOsc1Freq(value)
+	// 	osc1.frequency.value = value
+	// }
+	// const audioEl = document.querySelector('audio')
+	// setAudioElement(audioEl)
+
+	console.log('zzaudioElement: ', audioElement)
+
+	// const handleClick = (action) => {
+	// 	console.log('action: ', action)
+	// 	action === true ? audioElement.play() : audioElement.pause()
+	// }
 
 	return (
 		<>
-			<h1>WebAudioFileIn</h1>
-			<button onClick={() => osc1.start()}>Start</button>
-			<button onClick={() => osc1.stop()}>Stop</button>
-			<Osc1 changeFreq={changeOsc1Freq} freq={osc1Freq} />
+			<h1>Web Audio File In</h1>
+			<audio src={song}></audio>
+			{/* <button onClick={handleClick(true)}>Start</button>
+			<button onClick={handleClick(false)}>Stop</button> */}
 		</>
 	)
 }
