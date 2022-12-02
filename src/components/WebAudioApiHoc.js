@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import WebAudioOscillator from './WebAudioOscillator'
-import WebAudioFileIn from './WebAudioFileIn'
-import WebAudioFileIn02 from './WebAudioFileIn02'
-import FourChords from '../audio/4-chords-mono.wav'
+// import WebAudioFileIn from './WebAudioFileIn'
+// import WebAudioFileIn02 from './WebAudioFileIn02'
+import WebAudioFileIn03 from './WebAudioFileIn03'
+import FourChords from '../audio/4-chords-mono.mp3'
 
 //Main: AudioContext and output
 let actx = new AudioContext()
@@ -26,7 +27,7 @@ export default function WebAudioApiHoc() {
 					output={out}
 					gain={gain1}
 				/>
-				<WebAudioFileIn02 actx={actx} sound={FourChords} />
+				<WebAudioFileIn03 actx={actx} soundFile={FourChords} />
 			</div>
 		</>
 	)
