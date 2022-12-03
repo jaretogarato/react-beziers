@@ -65,6 +65,7 @@ class Fft01 extends React.Component {
 			y: samples,
 			mode: 'markers',
 			//type: 'scatter',
+			name: trace2,
 		}
 
 		var trace3 = {
@@ -141,7 +142,13 @@ class Fft01 extends React.Component {
 				<div>
 					<Plot
 						data={[plotData]}
-						layout={{ width: 640, height: 480, title: 'Trace1' }}
+						layout={{
+							width: 540,
+							height: 400,
+							title: plotData.name,
+							paper_bgcolor: 'rgba(0,0,0,0)',
+							plot_bgcolor: 'rgba(0,0,0,0)',
+						}}
 					/>
 				</div>
 			</>

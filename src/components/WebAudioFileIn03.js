@@ -4,11 +4,13 @@ import React, { useState, useEffect } from 'react'
 export default function WebAudioFileIn03({ actx, soundFile }) {
 	const [sound, setSound] = useState(soundFile)
 	const [soundBuffer, setSoundBuffer] = useState([])
+	const [fftData, setFftData] = useState([])
+	const source = actx.createBufferSource()
 	// const url = FourChords.url
 	// console.log(FourChords)
 
 	const fetchData = async (sound) => {
-		console.log('sound: ', sound)
+		// console.log('sound: ', sound)
 		const response = await fetch(sound)
 		if (!response.ok) {
 			throw new Error('Data coud not be fetched!')
@@ -22,14 +24,21 @@ export default function WebAudioFileIn03({ actx, soundFile }) {
 			.then((res) => {
 				setSoundBuffer(res)
 			})
-			.then(console.log('soundBuffer: ', soundBuffer))
+			// .then(
+			// 	actx.decodeAudioData(soundBuffer).then(function (decodedData) {
+			// 		console.log('decodedData: ', decodedData)
+			// 		setFftData(decodedData)
+			// 		console.log('fftData: ', fftData)
+			// 	})
+			// )
 			.catch((e) => {
-				console.log('e.message')
+				console.log(e.message)
 			})
 	}, [])
 
 	console.log('soundsound: ', sound)
 	console.log('soundbufferbuffer: ', soundBuffer)
+	// console.log('fft: ', fftData)
 
 	return (
 		<div>

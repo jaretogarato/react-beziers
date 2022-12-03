@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import WebAudioOscillator from './WebAudioOscillator'
 // import WebAudioFileIn from './WebAudioFileIn'
 // import WebAudioFileIn02 from './WebAudioFileIn02'
-import WebAudioFileIn03 from './WebAudioFileIn03'
-import FourChords from '../audio/4-chords-mono.mp3'
+// import WebAudioFileIn03 from './WebAudioFileIn03'
+import WebAudioFileInP5 from './WebAudioFileInP5'
+import FourChords from '../audio/4-chords-mono.wav'
 
 //Main: AudioContext and output
 let actx = new AudioContext()
@@ -27,8 +28,29 @@ export default function WebAudioApiHoc() {
 					output={out}
 					gain={gain1}
 				/>
-				<WebAudioFileIn03 actx={actx} soundFile={FourChords} />
+				<WebAudioFileInP5 actx={actx} soundFile={FourChords} />
 			</div>
 		</>
 	)
 }
+
+// const source = actx.createBufferSource()
+
+// 	let analyser = actx.createAnalyser()
+// 	analyser.fftSize = 2048
+// 	let bufferLength = analyser.fftSize
+// 	let dataArray = new Uint8Array(bufferLength)
+
+// useEffect(() => {
+//   fetchData(sound)
+//     .then((res) => {
+//       setSoundBuffer(res)
+//     })
+//     .then(() => {
+//       analyser.getByteTimeDomainData(soundBuffer)
+//       setFftData(analyser)
+//     })
+//     .catch((e) => {
+//       console.log(e.message)
+//     })
+// }, [])
