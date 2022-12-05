@@ -12,6 +12,7 @@ export default function WebAudioFileInP5({ actx, soundFile }) {
 	const [soundBufferView, setSoundBufferView] = useState([])
 	const [fftData, setFftData] = useState([])
 	const [p5Sound, setP5Sound] = useState()
+
 	const source = actx.createBufferSource()
 
 	const fetchData = async (sound) => {
@@ -41,9 +42,36 @@ export default function WebAudioFileInP5({ actx, soundFile }) {
 	console.log(soundBufferView[500])
 	console.log(soundBufferView[5000])
 	console.log(soundBufferView[15000])
-	// console.log(new Uint8Array(soundBuffer))
-	// console.log('fft: ', fftData)
-	// console.log('p5Sound: ', p5Sound)
+
+	const normalizeArray = (sixteenBitArray) => {
+		let normalizedArray = []
+		sixteenBitArray.map((point) => {
+			normalizedArray.push(parseFloat((point / 65535).toFixed(4)))
+		})
+		return normalizedArray
+	}
+
+	const normalizedArray = normalizeArray(soundBufferView)
+	console.log(normalizedArray)
+
+	let firstTwentieth = []
+
+	for (let x = 0; x < 2048; x++) {
+		firstTwentieth.push(normalizedArray[x])
+	}
+	console.log('firstTwentieth: ', firstTwentieth)
+	console.log(firstTwentieth.length)
+
+	let phasors = fftjs.fft(firstTwentieth)
+	console.log('phasors:')
+	console.log(phasors)
+	console.log(phasors.length)
+
+	// const graphFft = (fftData) => {
+	//   fftData.map((point, yy) => {
+	//     //canvas. point at x, yy is height
+	//   }
+	// }
 
 	return (
 		<div>

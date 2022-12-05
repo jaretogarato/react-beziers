@@ -4,7 +4,9 @@ import WebAudioOscillator from './WebAudioOscillator'
 // import WebAudioFileIn02 from './WebAudioFileIn02'
 // import WebAudioFileIn03 from './WebAudioFileIn03'
 import WebAudioFileInP5 from './WebAudioFileInP5'
-import FourChords from '../audio/4-chords-mono.wav'
+// import FourChords from '../audio/4-chords-mono.wav'
+// import FourChords from '../audio/4-chords.aif'
+import FourChords from '../audio/4-chords-mono-signed-16.aiff'
 
 //Main: AudioContext and output
 let actx = new AudioContext()

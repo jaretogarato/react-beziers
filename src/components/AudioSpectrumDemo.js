@@ -133,8 +133,9 @@ class AudioSpectrumDemo extends Component {
 						<audio
 							id='audio-element'
 							preload='true'
-							src={`${this.playlist[0]}`}
+							src={`${this.playlist[3]}`}
 						></audio>
+
 						<AudioSpectrum
 							id='audio-canvas'
 							height={200}
