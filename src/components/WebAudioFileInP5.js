@@ -10,9 +10,6 @@ export default function WebAudioFileInP5({ actx, soundFile }) {
 	const [sound, setSound] = useState(soundFile)
 	const [soundBuffer, setSoundBuffer] = useState([])
 	const [soundBufferView, setSoundBufferView] = useState([])
-	// const [fftData, setFftData] = useState([])
-	// const [p5Sound, setP5Sound] = useState()
-	// const source = actx.createBufferSource()
 
 	const fetchData = async (sound) => {
 		const response = await fetch(sound)
@@ -35,13 +32,6 @@ export default function WebAudioFileInP5({ actx, soundFile }) {
 			})
 	}, [])
 
-	console.log('soundsound: ', sound)
-	console.log(soundBuffer)
-	console.log(soundBufferView)
-	console.log(soundBufferView[500])
-	console.log(soundBufferView[5000])
-	console.log(soundBufferView[15000])
-
 	const normalizeArray = (sixteenBitArray) => {
 		let normalizedArray = []
 		sixteenBitArray.map((point) => {
@@ -51,65 +41,47 @@ export default function WebAudioFileInP5({ actx, soundFile }) {
 	}
 
 	const normalizedArray = normalizeArray(soundBufferView)
-	console.log(normalizedArray)
 	let firstTwentieth = []
 
 	for (let x = 0; x < 2048; x++) {
 		firstTwentieth.push(normalizedArray[x])
 	}
 
-	console.log('firstTwentieth: ', firstTwentieth)
-	console.log(firstTwentieth.length)
-
 	let phasors = fftjs.fft(firstTwentieth)
-	console.log('phasors:')
-	console.log(phasors)
-	console.log(phasors.length)
-
-	let frequencies = fftUtil.fftFreq(phasors, 8000), // Sample rate and coef is just used for length, and frequency step
+	let frequencies = fftUtil.fftFreq(phasors, 8000),
 		magnitudes = fftUtil.fftMag(phasors)
 
 	var both = frequencies.map(function (f, ix) {
 		return { frequency: f, magnitude: magnitudes[ix] }
 	})
 
-	console.log(both)
-
-	// ctx.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI)
-
 	let x, y
 	const draw = (ctx, frameCount) => {
-		if (frameCount === 0 || frameCount % 100 === 0) {
-			x = 100 + Math.random() * 500
-			y = 100 + Math.random() * 500
-		}
-		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-		ctx.fillStyle = '#000000'
+		x = frameCount
+		y = ctx.canvas.height - both[frameCount].magnitude * 3
+		ctx.fillStyle = '#00fff0'
+		ctx.strokeStyle = '#ff00dd'
 		ctx.beginPath()
-		ctx.arc(
-			x,
-			y,
-			20 * Math.sin(frameCount * 0.05) ** 2,
-			0,
-			2 * Math.PI * Math.sin(frameCount * 0.05) ** 2
-		)
-		ctx.fill()
-	}
 
-	// const graphFft = (fftData) => {
-	//   fftData.map((point, yy) => {
-	//     //canvas. point at x, yy is height
-	//   }
-	// }
+		if (frameCount === 1) {
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+			ctx.moveTo(x, y)
+		} else {
+			ctx.arc(x, y, 2, 0, 2 * Math.PI)
+			ctx.fill()
+			ctx.moveTo(
+				frameCount - 1,
+				ctx.canvas.height - both[frameCount - 1].magnitude * 3
+			)
+			ctx.lineTo(x, y)
+			ctx.stroke()
+		}
+	}
 
 	return (
 		<div>
 			<h2>Audio File In P5</h2>
-			<Canvas
-				draw={draw}
-				width={window.innerWidth}
-				height={window.innerHeight}
-			/>
+			<Canvas draw={draw} width={window.innerWidth} height={300} />
 		</div>
 	)
 }
