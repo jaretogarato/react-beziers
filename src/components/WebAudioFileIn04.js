@@ -30,6 +30,7 @@ export default function WebAudioFileIn04({ actx, soundFile }) {
 			.then((res) => {
 				setSoundBuffer(res)
 				setSoundBufferView(new Uint16Array(res))
+				// actx.decodeAudioData(res, fileDecoded(actx.audioBuffer))
 				console.log('res: ')
 				console.log(res)
 			})
@@ -37,6 +38,12 @@ export default function WebAudioFileIn04({ actx, soundFile }) {
 				console.log(e.message)
 			})
 	}, [])
+
+	const fileDecoded = (audioBuffer) => {
+		// This is the duration you want, in seconds:
+		// console.log(audioBuffer.duration)
+		console.log('hi')
+	}
 
 	const normalizeArray = (sixteenBitArray) => {
 		let normalizedArray = []
