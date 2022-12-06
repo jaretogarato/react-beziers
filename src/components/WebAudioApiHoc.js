@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
+import { Grid } from 'semantic-ui-react'
 import WebAudioOscillator from './WebAudioOscillator'
 // import WebAudioFileIn from './WebAudioFileIn'
 // import WebAudioFileIn02 from './WebAudioFileIn02'
 // import WebAudioFileIn03 from './WebAudioFileIn03'
+import WebAudioFileIn04 from './WebAudioFileIn04'
 import WebAudioFileInP5 from './WebAudioFileInP5'
+import WebAudioFileIn06 from './WebAudioFileIn06'
 // import FourChords from '../audio/4-chords-mono.wav'
 // import FourChords from '../audio/4-chords.aif'
 import FourChords from '../audio/4-chords-mono-signed-16.aiff'
+import FourChordsMp3 from '../audio/4-chords-mono.mp3'
 
 //Main: AudioContext and output
 let actx = new AudioContext()
@@ -23,14 +27,27 @@ export default function WebAudioApiHoc() {
 		<>
 			<div>
 				<h1>Web Audio API HOC</h1>
+				<Grid celled>
+					<Grid.Row>
+						<Grid.Column width={16}>
+							<WebAudioOscillator
+								oscillator={osc1}
+								audioContext={actx}
+								output={out}
+								gain={gain1}
+							/>
+						</Grid.Column>
+					</Grid.Row>
 
-				<WebAudioOscillator
-					oscillator={osc1}
-					audioContext={actx}
-					output={out}
-					gain={gain1}
-				/>
-				<WebAudioFileInP5 actx={actx} soundFile={FourChords} />
+					<Grid.Row>
+						<Grid.Column width={16}>
+							<WebAudioFileIn04 actx={actx} soundFile={FourChords} />
+						</Grid.Column>
+						<Grid.Column width={16}>
+							<WebAudioFileIn06 actx={actx} soundFile={FourChordsMp3} />
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
 			</div>
 		</>
 	)

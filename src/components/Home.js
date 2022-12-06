@@ -16,6 +16,8 @@ export default function Home() {
 	return (
 		<div id='init-q-body' className={theme}>
 			<div id='init-q-els' className={theme}>
+				<WebAudioApiHoc />
+
 				<Grid celled columns={2}>
 					{/* <Grid.Row>
 						<Grid.Column>
@@ -26,11 +28,11 @@ export default function Home() {
 						</Grid.Column>
 					</Grid.Row> */}
 
-					<Grid.Row>
+					{/* <Grid.Row>
 						<Grid.Column>
 							<WebAudioApiHoc />
 						</Grid.Column>
-					</Grid.Row>
+					</Grid.Row> */}
 
 					<Grid.Row>
 						<Grid.Column>
